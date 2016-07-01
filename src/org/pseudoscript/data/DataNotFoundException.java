@@ -19,7 +19,14 @@ public class DataNotFoundException extends Exception {
 	
 	public DataNotFoundException(String key, String message) {
 		super(message);
-		this.key = key;
+		this.key = key;this.getMessage();
 	}
 	
+	/**
+	 * Returns key of the data.
+	 * @return key of the data that cannot be found.
+	 */
+	public String getKey() {
+		return this.key;
+	}
 }

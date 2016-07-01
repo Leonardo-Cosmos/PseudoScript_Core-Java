@@ -2,6 +2,7 @@ package org.pseudoscript.data.file;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -50,7 +51,7 @@ class DirDataSource implements DataSource {
 	}
 
 	@Override
-	public void load() {
+	public void load() throws IOException {
 		dirDataSourceMap.clear();
 		fileDataSourceMap.clear();
 		
@@ -79,7 +80,7 @@ class DirDataSource implements DataSource {
 	}
 
 	@Override
-	public void save() {
+	public void save() throws IOException {
 		for (Entry<String, FileDataSource> entry : fileDataSourceMap.entrySet()) {
 			entry.getValue().save();
 		}

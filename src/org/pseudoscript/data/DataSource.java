@@ -1,5 +1,7 @@
 package org.pseudoscript.data;
 
+import java.io.IOException;
+
 public interface DataSource {
 	
 	String SEPARATOR = ".";
@@ -8,8 +10,8 @@ public interface DataSource {
 	
 	void set(String key, Object value) throws IllegalKeyException;
 	
-	void load();
+	void load() throws IOException;
 	
-	void save();
+	void save() throws IOException;
 	
 }
