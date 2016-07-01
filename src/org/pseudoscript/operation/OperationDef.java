@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface OperationDef {
 
-	public String getName();
-	public void setName(String name);
+	String getName();
+	void setName(String name);
 	
-	public String getExecutor();
-	public void setExecutor(String executor);
+	String getExecutor();
+	void setExecutor(String executor);
 	
-	public List<ParameterDef> getParameters();
-	public void setParameters(List<ParameterDef> parameters);
+	List<ParameterDef> getParameters();
+	void setParameters(List<ParameterDef> parameters);
 	
 }

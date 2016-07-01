@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface OperationInfo {
 
-	public String getName();
-	public void setName(String name);
+	String getName();
+	void setName(String name);
 	
-	public String getExecutor();
-	public void setExecutor(String executor);
+	String getExecutor();
+	void setExecutor(String executor);
 	
-	public List<ArgumentInfo> getArguments();
-	public void setArguments(List<ArgumentInfo> arguments);
+	List<ArgumentInfo> getArguments();
+	void setArguments(List<ArgumentInfo> arguments);
 	
 }
