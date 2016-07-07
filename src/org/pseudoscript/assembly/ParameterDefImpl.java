@@ -1,4 +1,4 @@
-package org.pseudoscript.operation;
+package org.pseudoscript.assembly;
 
 public class ParameterDefImpl implements ParameterDef {
 

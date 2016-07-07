@@ -1,13 +1,13 @@
-package org.pseudoscript.operation;
+package org.pseudoscript.assembly;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperationDefImpl implements OperationDef {
+public class OperationInfoImpl implements OperationInfo {
 
 	private String name;
 	private String executor;
-	private final List<ParameterDef> parameters = new ArrayList<>();	
+	private final List<ArgumentInfo> arguments = new ArrayList<>();
 	
 	@Override
 	public String getName() {
@@ -17,7 +17,6 @@ public class OperationDefImpl implements OperationDef {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	@Override
 	public String getExecutor() {
 		return executor;
@@ -25,16 +24,16 @@ public class OperationDefImpl implements OperationDef {
 	@Override
 	public void setExecutor(String executor) {
 		this.executor = executor;
-	}
-
-	@Override
-	public List<ParameterDef> getParameters() {
-		return parameters;
+		
 	}
 	@Override
-	public void setParameters(List<ParameterDef> parameters) {
-		this.parameters.clear();
-		this.parameters.addAll(parameters);
+	public List<ArgumentInfo> getArguments() {
+		return arguments;
 	}
-
+	@Override
+	public void setArguments(List<ArgumentInfo> arguments) {
+		this.arguments.clear();
+		this.arguments.addAll(arguments);
+	}
+	
 }
