@@ -10,7 +10,8 @@ import org.pseudoscript.script.xml.jaxb.Script;
 
 class ScriptMarshallerFactory {
 
-	private static final Logger LOGGER = Logger.getLogger(ScriptMarshallerFactory.class);
+	private static final Logger LOGGER = Logger.getLogger(
+			ScriptMarshallerFactory.class.getSimpleName());
 
 	private static Marshaller marshaller;
 
