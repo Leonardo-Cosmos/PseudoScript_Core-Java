@@ -1,5 +1,7 @@
 package org.pseudoscript.script;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,9 +10,9 @@ import org.pseudoscript.data.DataSource;
 
 public class ScriptImpl implements Script {
 
-	private Map<String, DataSource> dataSources;
+	private Map<String, DataSource> dataSources = new LinkedHashMap<>();
 	
-	private List<OperationInfo> operations;
+	private List<OperationInfo> operations = new ArrayList<>();
 
 	@Override
 	public Map<String, DataSource> getDataSources() {
@@ -19,7 +21,8 @@ public class ScriptImpl implements Script {
 
 	@Override
 	public void setDataSources(Map<String, DataSource> dataSources) {
-		this.dataSources = dataSources;
+		this.dataSources.clear();
+		this.dataSources.putAll(dataSources);
 	}
 
 	@Override
@@ -29,7 +32,8 @@ public class ScriptImpl implements Script {
 
 	@Override
 	public void setOperations(List<OperationInfo> operations) {
-		this.operations = operations;
+		this.operations.clear();
+		operations.addAll(operations);
 	}
 	
 }

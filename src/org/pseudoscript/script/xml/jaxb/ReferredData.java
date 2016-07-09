@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="referredData">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="dataSource" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="key" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,33 +36,33 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "referredData")
 public class ReferredData {
 
-    @XmlAttribute(name = "ref", required = true)
-    protected String ref;
+    @XmlAttribute(name = "dataSource", required = true)
+    protected String dataSource;
     @XmlAttribute(name = "key", required = true)
     protected String key;
 
     /**
-     * Gets the value of the ref property.
+     * Gets the value of the dataSource property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getRef() {
-        return ref;
+    public String getDataSource() {
+        return dataSource;
     }
 
     /**
-     * Sets the value of the ref property.
+     * Sets the value of the dataSource property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setRef(String value) {
-        this.ref = value;
+    public void setDataSource(String value) {
+        this.dataSource = value;
     }
 
     /**
