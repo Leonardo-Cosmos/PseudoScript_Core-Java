@@ -10,10 +10,10 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 import org.apache.log4j.Logger;
-import org.pseudoscript.assembly.ArgumentInfo;
 import org.pseudoscript.assembly.DataSourceArgumentInfo;
-import org.pseudoscript.assembly.OperationInfo;
 import org.pseudoscript.data.DataSource;
+import org.pseudoscript.script.ArgumentInfo;
+import org.pseudoscript.script.OperationInfo;
 import org.pseudoscript.script.Script;
 import org.pseudoscript.script.ScriptProvider;
 

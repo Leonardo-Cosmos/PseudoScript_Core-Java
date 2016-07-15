@@ -1,4 +1,4 @@
-package org.pseudoscript.assembly;
+package org.pseudoscript.program;
 
 public interface Operation {
 

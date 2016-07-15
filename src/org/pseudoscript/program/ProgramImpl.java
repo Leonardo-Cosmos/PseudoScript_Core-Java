@@ -1,4 +1,4 @@
-package org.pseudoscript.assembly;
+package org.pseudoscript.program;
 
 import java.util.ArrayList;
 import java.util.List;

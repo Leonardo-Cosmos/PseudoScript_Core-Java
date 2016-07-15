@@ -7,13 +7,13 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import org.apache.log4j.Logger;
-import org.pseudoscript.assembly.ArgumentInfo;
-import org.pseudoscript.assembly.ArgumentInfoImpl;
 import org.pseudoscript.assembly.DataSourceArgumentInfo;
 import org.pseudoscript.assembly.DataSourceArgumentInfoImpl;
-import org.pseudoscript.assembly.OperationInfo;
-import org.pseudoscript.assembly.OperationInfoImpl;
 import org.pseudoscript.data.DataSource;
+import org.pseudoscript.script.ArgumentInfo;
+import org.pseudoscript.script.ArgumentInfoImpl;
+import org.pseudoscript.script.OperationInfo;
+import org.pseudoscript.script.OperationInfoImpl;
 import org.pseudoscript.script.Script;
 import org.pseudoscript.script.ScriptConsumer;
 import org.pseudoscript.script.ScriptImpl;

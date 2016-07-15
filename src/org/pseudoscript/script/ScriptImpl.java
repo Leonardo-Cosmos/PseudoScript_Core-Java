@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.pseudoscript.assembly.OperationInfo;
 import org.pseudoscript.data.DataSource;
 
 public class ScriptImpl implements Script {

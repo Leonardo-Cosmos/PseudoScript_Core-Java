@@ -1,6 +1,7 @@
 package org.pseudoscript.assembly;
 
 import org.pseudoscript.data.DataSource;
+import org.pseudoscript.script.ArgumentInfo;
 
 public interface DataSourceArgumentInfo extends ArgumentInfo {
 
