@@ -97,10 +97,10 @@ class DirDataSource implements DataSource {
 		if (index == -1) {
 			return null;
 		} else if (index == 0) {
-			throw new IllegalKeyException("Key separator \"" + DataSource.SEPARATOR + 
+			throw new IllegalKeyException(key, "Key separator \"" + DataSource.SEPARATOR + 
 					"\" cannot be start of key.");
 		} else if (index == (key.length() - 1)) {
-			throw new IllegalKeyException("Key separator \"" + DataSource.SEPARATOR +
+			throw new IllegalKeyException(key, "Key separator \"" + DataSource.SEPARATOR +
 					"\" cannot be end of key.");	
 		} else {
 			separatedKey = new SeparatedKey();
@@ -114,7 +114,8 @@ class DirDataSource implements DataSource {
 		DirDataSource dirDataSource = dirDataSourceMap.get(separatedKey.dataSourceKey);
 		if (dirDataSource != null) {
 			if (!separatedKey.innerKey.contains(DataSource.SEPARATOR)) {
-				throw new IllegalKeyException("Directory cannot be the last level of key.");
+				throw new IllegalKeyException(separatedKey.innerKey, 
+						"Directory cannot be the last level of key.");
 			}
 			return dirDataSource;
 		}
@@ -124,7 +125,8 @@ class DirDataSource implements DataSource {
 			return fileDataSource;
 		}
 		
-		throw new IllegalKeyException("Cannot find corresponding directory or file.");
+		throw new IllegalKeyException(separatedKey.dataSourceKey, 
+				"Cannot find corresponding directory or file.");
 	}
 
 	protected class SeparatedKey {

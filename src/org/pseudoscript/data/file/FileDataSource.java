@@ -30,18 +30,19 @@ public abstract class FileDataSource implements DataSource {
 		}
 		
 		if (key.startsWith(DataSource.SEPARATOR)) {
-			throw new IllegalKeyException("Key separator \"" + DataSource.SEPARATOR + 
+			throw new IllegalKeyException(key, "Key separator \"" + DataSource.SEPARATOR + 
 					"\" cannot be start of key.");
 		}
 		
 		if (key.endsWith(DataSource.SEPARATOR)) {
-			throw new IllegalKeyException("Key separator \"" + DataSource.SEPARATOR +
+			throw new IllegalKeyException(key, "Key separator \"" + DataSource.SEPARATOR +
 					"\" cannot be end of key.");
 		}
 		
 		Object value = dataMap.get(key);
 		if (value == null) {
-			throw new DataNotFoundException();
+			throw new DataNotFoundException(key, 
+					String.format("Data of \" %s \" is not found.", key));
 		}
 		return value;
 	}
