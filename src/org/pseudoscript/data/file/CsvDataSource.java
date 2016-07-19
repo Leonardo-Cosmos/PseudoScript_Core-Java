@@ -54,6 +54,7 @@ public class CsvDataSource extends FileDataSource {
 				line = String.join(CsvDataSource.COMMA, 
 						entry.getKey(), entry.getValue().toString());
 				writer.write(line);
+				writer.newLine();
 			}
 		} catch (IOException ex) {
 			throw ex;
