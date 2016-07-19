@@ -14,6 +14,8 @@ public abstract class FileDataSource implements DataSource {
 	
 	protected final File file;
 	
+	private boolean isChanged = false;
+	
 	public FileDataSource(File file) {
 		dataMap = new LinkedHashMap<>();
 		
@@ -49,6 +51,11 @@ public abstract class FileDataSource implements DataSource {
 
 	@Override
 	public void set(String key, Object value) {
+		isChanged = true;
 		dataMap.put(key, value);
+	}
+	
+	public boolean isChanged() {
+		return this.isChanged;
 	}
 }

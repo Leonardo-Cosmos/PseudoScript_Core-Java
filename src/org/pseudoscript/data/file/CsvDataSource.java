@@ -42,6 +42,10 @@ public class CsvDataSource extends FileDataSource {
 
 	@Override
 	public void save() throws IOException {
+		if (!isChanged()) {
+			return;
+		}
+		
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter(file));
