@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.pseudoscript.data.DataNotFoundException;
 import org.pseudoscript.data.DataSource;
-import org.pseudoscript.data.IllegalKeyException;
+import org.pseudoscript.data.exception.DataNotFoundException;
+import org.pseudoscript.data.exception.IllegalKeyException;
 
 class DirDataSource implements DataSource {
 
@@ -95,7 +95,7 @@ class DirDataSource implements DataSource {
 		
 		SeparatedKey separatedKey = null;
 		if (index == -1) {
-			return null;
+			throw new IllegalKeyException(key, key + " is last level in directory.");
 		} else if (index == 0) {
 			throw new IllegalKeyException(key, "Key separator \"" + DataSource.SEPARATOR + 
 					"\" cannot be start of key.");
@@ -111,22 +111,24 @@ class DirDataSource implements DataSource {
 	}
 	
 	protected DataSource findDataSource(SeparatedKey separatedKey) throws IllegalKeyException {
-		DirDataSource dirDataSource = dirDataSourceMap.get(separatedKey.dataSourceKey);
+		String dataSourceKey = separatedKey.dataSourceKey;
+		
+		DirDataSource dirDataSource = dirDataSourceMap.get(dataSourceKey);
 		if (dirDataSource != null) {
 			if (!separatedKey.innerKey.contains(DataSource.SEPARATOR)) {
 				throw new IllegalKeyException(separatedKey.innerKey, 
-						"Directory cannot be the last level of key.");
+						String.format("\"%s\" exists, but directory cannot be the last level of key."));
 			}
 			return dirDataSource;
 		}
 		
-		FileDataSource fileDataSource = fileDataSourceMap.get(separatedKey.dataSourceKey);
+		FileDataSource fileDataSource = fileDataSourceMap.get(dataSourceKey);
 		if (fileDataSource != null) {
 			return fileDataSource;
 		}
 		
-		throw new IllegalKeyException(separatedKey.dataSourceKey, 
-				"Cannot find corresponding directory or file.");
+		throw new IllegalKeyException(dataSourceKey, 
+				String.format("Cannot find directory or file whose name is \"%s\"", dataSourceKey));
 	}
 
 	protected class SeparatedKey {

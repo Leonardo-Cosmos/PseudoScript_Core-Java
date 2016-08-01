@@ -1,4 +1,4 @@
-package org.pseudoscript.data;
+package org.pseudoscript.data.exception;
 
 public class DataNotFoundException extends Exception {
 	
@@ -27,7 +27,7 @@ public class DataNotFoundException extends Exception {
 	 * @return key of the data that cannot be found.
 	 */
 	public String getKey() {
-		return this.key;
+		return key;
 	}
 	
 }

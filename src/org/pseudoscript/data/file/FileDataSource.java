@@ -4,9 +4,9 @@ import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.pseudoscript.data.DataNotFoundException;
 import org.pseudoscript.data.DataSource;
-import org.pseudoscript.data.IllegalKeyException;
+import org.pseudoscript.data.exception.DataNotFoundException;
+import org.pseudoscript.data.exception.IllegalKeyException;
 
 public abstract class FileDataSource implements DataSource {
 

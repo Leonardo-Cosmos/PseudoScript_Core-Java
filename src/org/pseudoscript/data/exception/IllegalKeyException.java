@@ -1,4 +1,4 @@
-package org.pseudoscript.data;
+package org.pseudoscript.data.exception;
 
 public class IllegalKeyException extends Exception {
 

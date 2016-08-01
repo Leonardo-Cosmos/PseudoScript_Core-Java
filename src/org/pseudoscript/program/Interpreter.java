@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.pseudoscript.data.DataNotFoundException;
 import org.pseudoscript.data.DataSource;
-import org.pseudoscript.data.IllegalKeyException;
+import org.pseudoscript.data.exception.DataNotFoundException;
+import org.pseudoscript.data.exception.IllegalKeyException;
+import org.pseudoscript.program.exception.DataSourceNotFoundException;
+import org.pseudoscript.program.exception.ExecutorNotFoundException;
+import org.pseudoscript.program.exception.OperationNotFoundException;
 import org.pseudoscript.script.ArgumentInfo;
 import org.pseudoscript.script.OperationInfo;
 import org.pseudoscript.script.ReferredArgumentInfo;
@@ -34,14 +37,15 @@ public class Interpreter {
 			String executorName = operationInfo.getExecutor();
 			ExecutorInfo executorInfo = executors.get(executorName);
 			if (executorInfo == null) {
-				throw new ExecutorNotFoundException();
+				throw new ExecutorNotFoundException(executorName, 
+						String.format("Executor \"%s\" doesn't exist.", executorName));
 			}
 
 			String operationName = operationInfo.getName();
 			Method method = executorInfo.getMethods().get(operationName);
 			if (method == null) {
-				// XXX Add detail.
-				throw new OperationNotFoundException();
+				throw new OperationNotFoundException(operationName,
+						String.format("Operation \"%s\" doesn't exist.", operationName));
 			}
 			
 			List<Object> argumentList = new ArrayList<>();
@@ -66,8 +70,8 @@ public class Interpreter {
 					// Retrieve data from real data source.
 					DataSource dataSource = dataSources.get(realDataSourceId);
 					if (dataSource == null) {
-						// XXX add detail
-						throw new DataSourceNotFoundException();
+						throw new DataSourceNotFoundException(realDataSourceId, 
+								String.format("Data source \"%s\" doesn't exist.", realDataSourceId));
 					}
 					argument = dataSource.get(fullKey);
 				} else {
