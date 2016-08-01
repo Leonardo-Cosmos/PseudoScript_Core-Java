@@ -24,8 +24,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="category" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="base" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="key" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,10 +39,10 @@ public class DataSource {
 
     @XmlAttribute(name = "id", required = true)
     protected String id;
-    @XmlAttribute(name = "category", required = true)
-    protected String category;
-    @XmlAttribute(name = "src", required = true)
-    protected String src;
+    @XmlAttribute(name = "base", required = true)
+    protected String base;
+    @XmlAttribute(name = "key")
+    protected String key;
 
     /**
      * Gets the value of the id property.
@@ -69,51 +69,51 @@ public class DataSource {
     }
 
     /**
-     * Gets the value of the category property.
+     * Gets the value of the base property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCategory() {
-        return category;
+    public String getBase() {
+        return base;
     }
 
     /**
-     * Sets the value of the category property.
+     * Sets the value of the base property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCategory(String value) {
-        this.category = value;
+    public void setBase(String value) {
+        this.base = value;
     }
 
     /**
-     * Gets the value of the src property.
+     * Gets the value of the key property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSrc() {
-        return src;
+    public String getKey() {
+        return key;
     }
 
     /**
-     * Sets the value of the src property.
+     * Sets the value of the key property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSrc(String value) {
-        this.src = value;
+    public void setKey(String value) {
+        this.key = value;
     }
 
 }

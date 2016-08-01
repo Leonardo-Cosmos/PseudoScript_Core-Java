@@ -8,7 +8,4 @@ public interface ArgumentInfo {
 	String getName();
 	void setName(String name);
 	
-	Object getValue();
-	void setValue(Object value);
-	
 }

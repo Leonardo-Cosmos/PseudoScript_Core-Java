@@ -10,12 +10,13 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 import org.apache.log4j.Logger;
-import org.pseudoscript.assembly.DataSourceArgumentInfo;
-import org.pseudoscript.data.DataSource;
 import org.pseudoscript.script.ArgumentInfo;
+import org.pseudoscript.script.ReferredArgumentInfo;
+import org.pseudoscript.script.ReferredDataSource;
 import org.pseudoscript.script.OperationInfo;
 import org.pseudoscript.script.Script;
 import org.pseudoscript.script.ScriptProvider;
+import org.pseudoscript.script.SimpleArgumentInfo;
 
 public class XmlScriptProvider extends ScriptProvider {
 
@@ -56,11 +57,14 @@ public class XmlScriptProvider extends ScriptProvider {
 			return;
 		}
 		
-		Map<String, DataSource> dataSources = script.getDataSources();
-		for (Entry<String, DataSource> entry : dataSources.entrySet()) {
+		Map<String, ReferredDataSource> dataSources = script.getDataSources();
+		for (Entry<String, ReferredDataSource> entry : dataSources.entrySet()) {
+			ReferredDataSource referredDataSource = entry.getValue();
 			org.pseudoscript.script.xml.jaxb.DataSource xmlDataSource = 
 					new org.pseudoscript.script.xml.jaxb.DataSource();
-			xmlDataSource.setId(entry.getKey());
+			xmlDataSource.setId(referredDataSource.getId());
+			xmlDataSource.setBase(referredDataSource.getBase());
+			xmlDataSource.setKey(referredDataSource.getKey());
 			xmlScript.getDataSources().getDataSource().add(xmlDataSource);
 		}
 		
@@ -75,22 +79,23 @@ public class XmlScriptProvider extends ScriptProvider {
 			for (ArgumentInfo argument : arguments) {
 				org.pseudoscript.script.xml.jaxb.Argument xmlArgument = 
 						new org.pseudoscript.script.xml.jaxb.Argument();
-				if (argument instanceof DataSourceArgumentInfo) {
+				if (argument instanceof ReferredArgumentInfo) {
 					org.pseudoscript.script.xml.jaxb.ReferredData xmlReferredData = 
 							new org.pseudoscript.script.xml.jaxb.ReferredData();
-					DataSourceArgumentInfo dataSourceArgument = (DataSourceArgumentInfo) argument;
-					DataSource dataSource = dataSourceArgument.getDataSource();
-					for (Entry<String, DataSource> entry : environmentDataSources.entrySet()) {
+					ReferredArgumentInfo referredArgument = (ReferredArgumentInfo) argument;
+					ReferredDataSource dataSource = referredArgument.getDataSource();
+					for (Entry<String, ReferredDataSource> entry : script.getDataSources().entrySet()) {
 						if (dataSource == entry.getValue()) {
 							xmlReferredData.setDataSource(entry.getKey());
 							break;
 						}
 					}
-					xmlReferredData.setKey(dataSourceArgument.getKey());
+					xmlReferredData.setKey(referredArgument.getKey());
 				} else {
 					org.pseudoscript.script.xml.jaxb.SimpleData xmlSimpleData = 
 							new org.pseudoscript.script.xml.jaxb.SimpleData();
-					xmlSimpleData.setValue(argument.getValue().toString());
+					SimpleArgumentInfo simpleArgument = (SimpleArgumentInfo) argument;
+					xmlSimpleData.setValue(simpleArgument.getValue().toString());
 				}
 				
 				xmlArgument.setName(argument.getName());

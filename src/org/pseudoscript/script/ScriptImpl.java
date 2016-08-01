@@ -5,21 +5,19 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.pseudoscript.data.DataSource;
-
 public class ScriptImpl implements Script {
 
-	private Map<String, DataSource> dataSources = new LinkedHashMap<>();
+	private Map<String, ReferredDataSource> dataSources = new LinkedHashMap<>();
 	
 	private List<OperationInfo> operations = new ArrayList<>();
 
 	@Override
-	public Map<String, DataSource> getDataSources() {
+	public Map<String, ReferredDataSource> getDataSources() {
 		return dataSources;
 	}
 
 	@Override
-	public void setDataSources(Map<String, DataSource> dataSources) {
+	public void setDataSources(Map<String, ReferredDataSource> dataSources) {
 		this.dataSources.clear();
 		this.dataSources.putAll(dataSources);
 	}
