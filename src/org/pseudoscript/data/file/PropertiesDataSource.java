@@ -7,10 +7,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PropertiesDataSource extends FileDataSource {
 
 	private static final String EQUAL = "=";
+	private static final Pattern PROPERTY_PATTERN = Pattern.compile("(?<key>[^=]+)=(?<prop>.+)");
+	private static final String GROUP_NAME_KEY = "key";
+	private static final String GROUP_NAME_DATA = "prop";
 	
 	public PropertiesDataSource(File file) {
 		super(file);
@@ -26,9 +31,11 @@ public class PropertiesDataSource extends FileDataSource {
 				if (line.isEmpty()) {
 					continue;
 				}
-				String[] splitted = line.split(PropertiesDataSource.EQUAL);
-				if (splitted.length == 2) {
-					dataMap.put(splitted[0], splitted[1]);
+				
+				Matcher matcher = PROPERTY_PATTERN.matcher(line);
+				if (matcher.matches()) {
+					dataMap.put(matcher.group(GROUP_NAME_KEY), 
+							matcher.group(GROUP_NAME_DATA));
 				}
 			}
 		} catch (IOException ex) {

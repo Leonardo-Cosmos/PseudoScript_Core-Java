@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.pseudoscript.data.DataSource;
 import org.pseudoscript.data.exception.DataNotFoundException;
@@ -13,6 +15,8 @@ import org.pseudoscript.data.exception.IllegalKeyException;
 
 class DirDataSource implements DataSource {
 
+	private static final Pattern FILE_DATA_SOURCE_NAME_PATTERN = Pattern.compile("([^\\.]+)(\\.[^\\.]+)?");
+	
 	private final Map<String, DirDataSource> dirDataSourceMap;
 	private final Map<String, FileDataSource> fileDataSourceMap;
 
@@ -66,7 +70,11 @@ class DirDataSource implements DataSource {
 			if (dataSource instanceof DirDataSource) {
 				dirDataSourceMap.put(file.getName(), (DirDataSource) dataSource);
 			} else {
-				fileDataSourceMap.put(file.getName(), (FileDataSource) dataSource);
+				String fileName = file.getName();
+				Matcher matcher = FILE_DATA_SOURCE_NAME_PATTERN.matcher(fileName);
+				if (matcher.matches()) {
+					fileDataSourceMap.put(matcher.group(1), (FileDataSource) dataSource);
+				}
 			}
 		}
 		

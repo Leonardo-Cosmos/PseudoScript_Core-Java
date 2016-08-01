@@ -44,7 +44,7 @@ public abstract class FileDataSource implements DataSource {
 		Object value = dataMap.get(key);
 		if (value == null) {
 			throw new DataNotFoundException(key, 
-					String.format("Data of \" %s \" is not found.", key));
+					String.format("Data of \"%s\" is not found.", key));
 		}
 		return value;
 	}
