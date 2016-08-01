@@ -12,7 +12,7 @@ public class FileDataSourceFactory {
 	private static final Pattern xmlPattern = Pattern.compile(".+\\.[xX][mM][lL]");
 	private static final Pattern jsonPattern = Pattern.compile(".+\\.[jJ][sS][oO][nN]");
 	private static final Pattern csvPattern = Pattern.compile(".+\\.[cC][sS][vV]");
-	private static final Pattern propertiesPattern = Pattern.compile(".+\\[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS]");
+	private static final Pattern propertiesPattern = Pattern.compile(".+\\.[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS]");
 
 	public static boolean isXml(String fileName) {
 		Matcher matcher = xmlPattern.matcher(fileName);
