@@ -23,7 +23,10 @@ public class XmlScriptProvider extends ScriptProvider {
 	private static final Logger LOGGER = Logger.getLogger(
 			XmlScriptProvider.class.getSimpleName());
 	
-	private Marshaller marshaller;
+	private final Marshaller marshaller;
+	
+	protected final org.pseudoscript.script.xml.jaxb.ObjectFactory objectFactory = 
+			new org.pseudoscript.script.xml.jaxb.ObjectFactory();
 	
 	private Writer writer;
 	
@@ -40,7 +43,8 @@ public class XmlScriptProvider extends ScriptProvider {
 		try {
 			marshaller.marshal(xmlScript, writer);
 		} catch (JAXBException ex) {
-			LOGGER.error("Marshall Script XML failed.", ex);
+			LOGGER.error("Marshall Script XML failed.");
+			throw new IOException("Marshall Script XML failed.", ex);
 		} finally {
 			if (writer != null) {
 				writer.close();
